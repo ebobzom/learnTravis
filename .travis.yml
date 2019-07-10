@@ -11,13 +11,6 @@ after_success:
 services:
   - postgresql
 
-env:
-  - PASSWORD="elijah1234567890"
-  - DB_USER='postgres'
-  - HOST='localhost'
-  - DB='test'
-  - DB_PASSWORD='woody4real'
-  - DB_PORT=5432
 
 before_script:
   - psql -c 'create database test1;' -U postgres

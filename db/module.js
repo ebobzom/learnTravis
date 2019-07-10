@@ -44,10 +44,6 @@ const createUser = (req, res) => {
               .then((response) => {
                 // Sign with JWT
                 const token = jwt.sign(response.rows[0], process.env.PASSWORD);
-                response.rows[0].token = token;
-                res.cookie('key', token);
-                res.status(201).json({
-                  status: 'success',
                   data: response.rows[0],
                 });
               })
