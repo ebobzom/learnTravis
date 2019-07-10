@@ -12,4 +12,5 @@ const con = new pg.Client({
 
   con.query('create table person(user_id serial primary key not null, first_name varchar(50) not null, last_name varchar(50) not null, password varchar not null, is_admin boolean not null, email varchar(50) not null)', (err, res) => {
     console.log('Created table person')
+    con.end();
   })
