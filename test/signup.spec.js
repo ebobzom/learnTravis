@@ -9,7 +9,6 @@ describe('Way Farer API Tests', () => {
     it('response should be a JSON', function setTime(done) {
       chai.request(app)
         .post('/api/v1/auth/signup')
-        .type('form')
         .send({
           first_name: 'elijah',
           last_name: 'bobzom',
@@ -18,8 +17,17 @@ describe('Way Farer API Tests', () => {
           is_admin: true,
         })
         .end((err, res) => {
+          console.log(res.body)
           expect(err).to.be.null;
-          expect(res).to.have.status(200);
+          expect(res).to.be.json;
+          expect(res.body.data).to.have.property('user_id');
+          expect(res.body.data).to.have.property('first_name');
+          expect(res.body.data).to.have.property('last_name');
+          expect(res.body.data).to.have.property('email');
+          expect(res.body.data).to.have.property('is_admin');
+          expect(res.body.data).to.have.property('token');
+          expect(res).to.have.status(201);
+
           done()
         });
     });
@@ -36,7 +44,8 @@ describe('Way Farer API Tests', () => {
           is_admin: true,
         })
         .end((err, res) => {
-          expect(res).to.have.status(200);
+          console.log(res.body)
+          expect(res).to.have.status(201);
           done()
         });
     });
